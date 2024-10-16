@@ -14,7 +14,7 @@ export default function PlayerCard({ player }: props) {
     }
 
     return (
-        <div className="min-w-28 min-h-28 border-2 rounded-lg border-slate-500 p-2 shadow-lg flex flex-col justify-between">
+        <div className="w-32 h-32 border-2 rounded-lg border-slate-500 p-2 shadow-lg flex flex-col justify-between">
             <span className="text-lg">
                 {player.derbyName}
             </span>

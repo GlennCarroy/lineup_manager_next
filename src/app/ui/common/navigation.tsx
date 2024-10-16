@@ -38,7 +38,7 @@ export default function MainNav() {
                         </button>
                     </div>
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                        <div className="hidden sm:ml-6 sm:block">
+                        <div className="hidden sm:block">
                             <div className="flex space-x-4">
                                 {links.map((link, index) => (
                                     <Link 
@@ -55,9 +55,11 @@ export default function MainNav() {
                             </div>
                         </div>
                     </div>
+                    <a href="https://www.youtube.com/watch?v=cjkJfjTe-Ds&t=27s" target="_blank" className=' space-x-4 block text-cyan-400'>New to roller derby ?</a>
                 </div>
             </div>
-            {revealMobileNav && <div className="sm:hidden" id="mobile-menu">
+            {revealMobileNav && 
+            <div className="sm:hidden" id="mobile-menu">
                 <div className="space-y-1 px-2 pb-3 pt-2">
                     {links.map((link, index) => (
                         <Link 
@@ -72,7 +74,8 @@ export default function MainNav() {
                         </Link>   
                     ))}
                 </div>
-            </div>}
+            </div>
+            }
         </nav>
     )
 }
