@@ -1,28 +1,13 @@
-'use client'
-import { FormEvent } from "react";
+import { addPlayer } from "@/app/lib/actions/player";
 
 export default function AddPlayerPage() {
-    async function onSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()  
-     
-        const formData = new FormData(event.currentTarget)
-        console.log(formData)
-        // const response = await fetch('/api/submit', {
-        //   method: 'POST',
-        //   body: formData,
-        // })
-     
-        // // Handle response if necessary
-        // const data = await response.json()
-        // // ...
-    }
 
     return (
         <div className="min-w-0 flex-1">
             <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold leading-7 text-gray-900 mt-3 mb-6 sm:truncate sm:text-3xl sm:tracking-tight">Add a new player</h2>
             </div>
-            <form onSubmit={onSubmit}>
+            <form action={addPlayer}>
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div className="sm:col-span-3">
                         <label htmlFor="surname" className="block text-sm font-medium leading-6 text-gray-900">Name</label>
@@ -31,9 +16,9 @@ export default function AddPlayerPage() {
                         </div>
                     </div>
                     <div className="sm:col-span-3">
-                        <label htmlFor="derbyname" className="block text-sm font-medium leading-6 text-gray-900">Derby name</label>
+                        <label htmlFor="derbyName" className="block text-sm font-medium leading-6 text-gray-900">Derby name</label>
                         <div className="mt-2">
-                            <input type="text" name="derbyname" id="derbyname" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                            <input type="text" name="derbyName" id="derbyName" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                         </div>
                     </div>
                     <div className="sm:col-span-3">
