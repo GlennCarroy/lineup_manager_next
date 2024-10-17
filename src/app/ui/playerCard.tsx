@@ -2,7 +2,8 @@
 import { deletePlayer } from "../lib/actions/player";
 import { PlayerType } from "../lib/types";
 // Component
-import { StarIcon, PauseCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { PauseCircleIcon, StarIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import Link from "next/link";
 
 type props = {
     player: PlayerType;
@@ -18,17 +19,21 @@ export default function PlayerCard({ player, managementMode }: props) {
     }
 
     return (
-        <div className="relative w-32 h-32 border-2 rounded-lg border-slate-500 p-2 shadow-lg flex flex-col justify-between">
-            <span className="text-lg">
-                {player.derbyName}
-            </span>
-            <div>
-                <span className="text-sm">{player.surname}</span>
-                <div className="flex justify-between">
-                    <span>{player.playerId}</span>
-                    <span>{getPlayerIcon(player.position)}</span>
+        <div className="relative">
+            <Link
+                href={`/players/${player.playerId}`} 
+                className="w-32 h-32 border-2 rounded-lg border-slate-500 p-2 shadow-lg flex flex-col justify-between">
+                <span className="text-lg">
+                    {player.derbyName}
+                </span>
+                <div>
+                    <span className="text-sm">{player.surname}</span>
+                    <div className="flex justify-between">
+                        <span>{player.playerId}</span>
+                        <span>{getPlayerIcon(player.position)}</span>
+                    </div>
                 </div>
-            </div>
+            </Link>
             {managementMode && (
                 <button
                     onClick={()=> deletePlayer(player.playerId)}

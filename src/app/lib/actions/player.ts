@@ -1,6 +1,7 @@
 'use server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { PlayerType } from '../types';
 
  
 export async function addPlayer(formData: FormData) {
@@ -35,4 +36,18 @@ export async function deletePlayer(playerId: string) {
     });
 
     return revalidatePath("/players")
+}
+
+export async function getPlayer(playerId: string) {
+  const res = await fetch(`https://e1ro5w2m22.execute-api.eu-west-3.amazonaws.com/dev/players/${playerId}`, {
+    method: "GET",
+    mode: "cors", 
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const player = await res.json()
+  return player as unknown as  PlayerType
+
 }

@@ -4,7 +4,7 @@ import { inter } from "./ui/fonts"
 import "./globals.css";
 
 // Components
-import Navigation from "./ui/common/navigation"
+import Navigation from "./ui/navigation"
 
 export const metadata: Metadata = {
   title: "Lineup Manager",
