@@ -24,3 +24,15 @@ export async function addPlayer(formData: FormData) {
       revalidatePath("/players")
       return redirect("/players")
 }
+
+export async function deletePlayer(playerId: string) {
+    await fetch(`https://e1ro5w2m22.execute-api.eu-west-3.amazonaws.com/dev/players/${playerId}`, {
+      method: "DELETE",
+      mode: "cors", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return revalidatePath("/players")
+}

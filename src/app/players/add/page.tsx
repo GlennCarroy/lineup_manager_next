@@ -1,11 +1,12 @@
 import { addPlayer } from "@/app/lib/actions/player";
+import Link from "next/link";
 
 export default function AddPlayerPage() {
 
     return (
         <div className="min-w-0 flex-1">
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold leading-7 text-gray-900 mt-3 mb-6 sm:truncate sm:text-3xl sm:tracking-tight">Add a new player</h2>
+                <h2 className="text-2xl leading-7 text-gray-900 mt-3 mb-6 sm:truncate sm:text-3xl sm:tracking-tight">Add a new player</h2>
             </div>
             <form action={addPlayer}>
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -48,7 +49,13 @@ export default function AddPlayerPage() {
                         </div>
                     </div>
                 </div>
-                <div className="mt-6 flex items-center justify-end gap-x-6">
+                <div className="mt-6 flex items-center justify-end gap-x-3">
+                        <Link
+                            href="/players"
+                            className="mt-2 flex border-2 rounded border-gray-900  text-gray-900 p-2 hover:text-white hover:bg-gray-900" 
+                        >
+                            Cancel
+                        </Link>
                         <button 
                             type="submit"
                             className="mt-2 flex border-2 rounded border-blue-500  text-blue-500 p-2 hover:text-white hover:bg-blue-500" 

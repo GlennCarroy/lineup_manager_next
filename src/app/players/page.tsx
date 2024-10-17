@@ -5,6 +5,7 @@ import fetchPlayers from "./api/route";
 import { PlayerType } from "../lib/types";
 // Components
 import { PlusIcon } from "@heroicons/react/24/outline";
+import ManagementButton from "../ui/buttons/managementButton";
 import PlayerCard from "../ui/playerCard";
 import SearchPlayer from "../ui/searchPlayer";
 
@@ -19,6 +20,7 @@ export default async function Players({
 }: Props) {
     const data = await fetchPlayers();
     const query = searchParams?.query || '';
+    const isInManagementMode = !!searchParams?.management
 
     let players
     if(query) players = data.filter(d => {
@@ -29,8 +31,8 @@ export default async function Players({
     return (
         <div className="min-w-0 flex-1">
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold leading-7 text-gray-900 mt-3 mb-6 sm:truncate sm:text-3xl sm:tracking-tight">Players</h2>
-                <div className="relative flex items-center gap-3">
+                <h2 className="text-2xl leading-7 text-gray-900 mt-3 mb-6 sm:truncate sm:text-3xl sm:tracking-tight">Players</h2>
+                <div className="flex items-center gap-3">
                     <SearchPlayer />
                     <Link
                         href="/players/add"
@@ -38,12 +40,18 @@ export default async function Players({
                         >
                         <PlusIcon className="size-6" /> Add
                     </Link>
+                    <ManagementButton label="Manage" />
+
                 </div>
             </div>
             <div  className="flex gap-3 flex-wrap">
                 {players.map((player: PlayerType) => {
                     return (
-                        <PlayerCard player={player} key={player.playerId} />
+                        <PlayerCard 
+                            player={player} 
+                            key={player.playerId} 
+                            managementMode={isInManagementMode}    
+                        />
                     )
                 })}
             </div>

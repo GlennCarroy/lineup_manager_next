@@ -1,11 +1,15 @@
+'use client'
+import { deletePlayer } from "../lib/actions/player";
 import { PlayerType } from "../lib/types";
-import { StarIcon, PauseCircleIcon } from '@heroicons/react/24/outline'
+// Component
+import { StarIcon, PauseCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 type props = {
-    player: PlayerType
+    player: PlayerType;
+    managementMode: boolean;
 }
 
-export default function PlayerCard({ player }: props) {
+export default function PlayerCard({ player, managementMode }: props) {
 
     const getPlayerIcon = (position: PlayerType["position"]) => {
         if(position === "J") return <StarIcon className="size-6 text-blue-500"/>
@@ -14,7 +18,7 @@ export default function PlayerCard({ player }: props) {
     }
 
     return (
-        <div className="w-32 h-32 border-2 rounded-lg border-slate-500 p-2 shadow-lg flex flex-col justify-between">
+        <div className="relative w-32 h-32 border-2 rounded-lg border-slate-500 p-2 shadow-lg flex flex-col justify-between">
             <span className="text-lg">
                 {player.derbyName}
             </span>
@@ -25,6 +29,14 @@ export default function PlayerCard({ player }: props) {
                     <span>{getPlayerIcon(player.position)}</span>
                 </div>
             </div>
+            {managementMode && (
+                <button
+                    onClick={()=> deletePlayer(player.playerId)}
+                    className="absolute right-[-10px] top-[-10px] w-7 border-2 rounded-lg border-lg border-slate-500 text-white bg-slate-500"
+                >
+                    <XMarkIcon />
+                </button>
+            )}
         </div>
     )
-}
+} 

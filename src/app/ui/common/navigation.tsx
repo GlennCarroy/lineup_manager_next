@@ -44,7 +44,7 @@ export default function MainNav() {
                                     <Link 
                                         href={link.href} 
                                         className={clsx("rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white", {
-                                            'bg-sky-100 text-blue-600': pathname === link.href,
+                                            'bg-sky-100 text-cyan-500': pathname === link.href,
                                         })} 
                                         aria-current="page"
                                         key={index}
