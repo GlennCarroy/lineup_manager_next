@@ -1,4 +1,6 @@
 import { getPlayer } from "@/app/lib/actions/player";
+import PlayerForm from "@/app/ui/playerForm";
+import getPlayerIcon from "@/app/ui/playerIcon";
 
 type Props = {
     params : {
@@ -9,7 +11,6 @@ type Props = {
 export default async function Player({
     params,
   }: Props) {
-    // const { playerId} = useParams()
 
     if(!params.playerId) return (<>Parameter is missing </>)
 
@@ -17,9 +18,16 @@ export default async function Player({
 
     return (
         <div className="min-w-0 flex-1">
-            <div className="flex items-center justify-between">
-                <h2 className="text-2xl leading-7 text-gray-900 mt-3 mb-6 sm:truncate sm:text-3xl sm:tracking-tight">{player.derbyName}</h2>
+            <div className="flex items-center justify-between mt-3 mb-6">
+                <div className="flex items-center gap-x-3">
+                    <h2 className="text-2xl leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">{player.derbyName}</h2>
+                    {getPlayerIcon(player.position)}
+                </div>
             </div>
+            <PlayerForm
+                actionType="edit"
+                player={player}
+            />
         </div>
     )
 }

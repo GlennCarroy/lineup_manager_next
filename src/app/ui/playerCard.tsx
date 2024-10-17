@@ -4,6 +4,7 @@ import { PlayerType } from "../lib/types";
 // Component
 import { PauseCircleIcon, StarIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from "next/link";
+import getPlayerIcon from "./playerIcon";
 
 type props = {
     player: PlayerType;
@@ -12,11 +13,7 @@ type props = {
 
 export default function PlayerCard({ player, managementMode }: props) {
 
-    const getPlayerIcon = (position: PlayerType["position"]) => {
-        if(position === "J") return <StarIcon className="size-6 text-blue-500"/>
-        else if(position === "P") return <PauseCircleIcon className="size-6 text-blue-500" />
-        else return <></>
-    }
+    const playerIcon = getPlayerIcon(player.position)
 
     return (
         <div className="relative">
@@ -30,7 +27,7 @@ export default function PlayerCard({ player, managementMode }: props) {
                     <span className="text-sm">{player.surname}</span>
                     <div className="flex justify-between">
                         <span>{player.playerId}</span>
-                        <span>{getPlayerIcon(player.position)}</span>
+                        <span>{playerIcon}</span>
                     </div>
                 </div>
             </Link>

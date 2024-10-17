@@ -13,17 +13,17 @@ export async function addPlayer(formData: FormData) {
         rotation: formData.get('rotation') ? parseInt(formData.get('rotation') as string) : null ,
       };
 
-      await fetch(`https://e1ro5w2m22.execute-api.eu-west-3.amazonaws.com/dev/players`, {
-        method: "POST",
-        mode: "cors", 
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload)
-      });
+    await fetch(`https://e1ro5w2m22.execute-api.eu-west-3.amazonaws.com/dev/players`, {
+      method: "POST",
+      mode: "cors", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload)
+    });
 
-      revalidatePath("/players")
-      return redirect("/players")
+    revalidatePath("/players")
+    return redirect("/players")
 }
 
 export async function deletePlayer(playerId: string) {
@@ -49,5 +49,27 @@ export async function getPlayer(playerId: string) {
 
   const player = await res.json()
   return player as unknown as  PlayerType
+}
 
+export async function editPlayer(formData: FormData) {
+  const payload = {
+    playerId: formData.get('playerId'),
+    derbyName: formData.get('derbyName'),
+    surname: formData.get('surname'),
+    position: formData.get('position'),
+    rotation: formData.get('rotation') ? parseInt(formData.get('rotation') as string) : null ,
+  };
+  // Thanks to dynamoDB: post and put methods are using the same function
+  await fetch(`https://e1ro5w2m22.execute-api.eu-west-3.amazonaws.com/dev/players`, {
+    method: "POST",
+    mode: "cors", 
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload)
+  });
+
+  revalidatePath("/players")
+  revalidatePath(`/players/${formData.get("playerId")}`)
+  return redirect("/players")
 }
