@@ -3,6 +3,16 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { PlayerType } from '../types';
 
+export async function getPlayers() {
+  const res = await fetch(`https://e1ro5w2m22.execute-api.eu-west-3.amazonaws.com/dev/players`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  const players = await res.json()
+  return players as unknown as  PlayerType[]
+}
+
  
 export async function addPlayer(formData: FormData) {
     const payload = {

@@ -2,7 +2,7 @@
 import { deletePlayer } from "../lib/actions/player";
 import { PlayerType } from "../lib/types";
 // Component
-import { PauseCircleIcon, StarIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from "next/link";
 import getPlayerIcon from "./playerIcon";
 

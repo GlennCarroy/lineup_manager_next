@@ -1,10 +1,10 @@
-import Link from "next/link";
+import { getPlayers } from "../lib/actions/player";
 
-import fetchPlayers from "./api/route";
 // Types
 import { PlayerType } from "../lib/types";
 // Components
 import { PlusIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 import ManagementButton from "../ui/buttons/managementButton";
 import PlayerCard from "../ui/playerCard";
 import SearchPlayer from "../ui/searchPlayer";
@@ -18,7 +18,7 @@ type Props = {
 export default async function Players({
     searchParams
 }: Props) {
-    const data = await fetchPlayers();
+    const data = await getPlayers();
     const query = searchParams?.query || '';
     const isInManagementMode = !!searchParams?.management
 
