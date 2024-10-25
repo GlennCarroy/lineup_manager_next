@@ -12,7 +12,7 @@ export default function MainNav() {
         name: "Players",
         href: "/players",
     }, {
-        name: "Game",
+        name: "Game preparation",
         href:"/game"
     }]
 
