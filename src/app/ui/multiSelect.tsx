@@ -36,7 +36,7 @@ export default function MultiSelect({ options }: Props) {
                             <div className="flex flex-auto flex-wrap">
                                 {selection.map(s => {
                                   return (
-                                    <div className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-teal-700 bg-cyan-100 border border-cyan-300 ">
+                                    <div key={s.value} className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-teal-700 bg-cyan-100 border border-cyan-300 ">
                                         <div className="text-xs font-normal leading-none max-w-full flex-initial">{s.label}</div>
                                         <div className="flex flex-auto flex-row-reverse">
                                             <div onClick={() => removeFromSelection(s.value)}>
@@ -66,6 +66,7 @@ export default function MultiSelect({ options }: Props) {
                                     return (
                                         <div 
                                             onClick={() => addToSelection(option)}
+                                            key={option.value}
                                             className="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-teal-100">
                                             <div className="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100">
                                                 <div className="w-full items-center flex">

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 
-import { PlayerType, RosterType } from "../lib/types"
+import { PlayerType } from "../lib/types"
 // Components
 import PlayerCard from "../ui/playerCard"
 import getPlayerIcon from "../ui/playerIcon"
@@ -20,12 +20,12 @@ export default function RosterBuilder({ players } : Props) {
     function manageRoster(selected: boolean, what: string, player: PlayerType) {
         if(selected && spots === 15) return alert("Roster can contain more then 15 players");
         if(selected) {
-            //@ts-expect-error
+            //@ts-expect-error we know what we are doing
             roster[what].push(player)
         } else {
-            //@ts-expect-error
+            //@ts-expect-error we know what we are doing
             const updated = roster[what].filter((r: PlayerType) => r.playerId !== player.playerId )
-            //@ts-expect-error
+            //@ts-expect-error we know what we are doing
             roster[what] = updated
         }
         setSpots(roster["blockers"].length + roster["jammers"].length)
@@ -52,6 +52,7 @@ export default function RosterBuilder({ players } : Props) {
                         player={blocker} 
                         managementMode={false}
                         isClicked={(bool) => manageRoster(bool, "blockers", blocker)}
+                        key={blocker.playerId}
                         />
                 })}
             </div>
@@ -62,6 +63,7 @@ export default function RosterBuilder({ players } : Props) {
                         player={jammer} 
                         managementMode={false}
                         isClicked={(bool) => manageRoster(bool, "jammers", jammer)}
+                        key={jammer.playerId}
                         />
                 })}
             </div>

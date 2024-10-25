@@ -49,6 +49,7 @@ export default async function Players({
                     return (
                         <Link
                             href={`/players/${player.playerId}`} 
+                            key={player.playerId}
                         >
                             <PlayerCard 
                                 player={player} 
