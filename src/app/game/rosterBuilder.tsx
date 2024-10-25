@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 
 import { PlayerType, RosterType } from "../lib/types"
 // Components
 import PlayerCard from "../ui/playerCard"
 import getPlayerIcon from "../ui/playerIcon"
+import { RosterContext } from "./wrapper"
 
 type Props = {
     players: PlayerType[]
@@ -13,12 +14,8 @@ export default function RosterBuilder({ players } : Props) {
 
     const blockers = players.filter(p => p.position !== "J")
     const jammers = players.filter(p => p.position === "J")
-    const [roster, setRoster] = useState({
-        blockers: [],
-        jammers: [],
-        lines: []
-    } as RosterType)
-    const [spots, setSpots] = useState(0)
+    const {roster, setRoster} = useContext(RosterContext)
+    const [spots, setSpots] = useState(roster["blockers"].length + roster["jammers"].length || 0)
 
     function manageRoster(selected: boolean, what: string, player: PlayerType) {
         if(selected && spots === 15) return alert("Roster can contain more then 15 players");

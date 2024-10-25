@@ -25,3 +25,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.top-100 {top: 100%}
+.bottom-100 {bottom: 100%}
+
