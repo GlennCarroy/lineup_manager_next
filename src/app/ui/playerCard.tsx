@@ -1,25 +1,32 @@
 'use client'
+import { useState } from "react";
+import clsx from "clsx";
+
 import { deletePlayer } from "../lib/actions/player";
 import { PlayerType } from "../lib/types";
 // Component
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import Link from "next/link";
 import getPlayerIcon from "./playerIcon";
 
 type props = {
     player: PlayerType;
     managementMode: boolean;
+    isClicked?: (bool: boolean) => any;
 }
 
-export default function PlayerCard({ player, managementMode }: props) {
-
+export default function PlayerCard({ player, managementMode, isClicked }: props) {
+    const [ selected, setSelected ] = useState(false)
     const playerIcon = getPlayerIcon(player.position)
 
+    function manageSelection(bool: boolean) {
+        setSelected(bool)
+        if (isClicked) return isClicked(bool)
+    }
+
     return (
-        <div className="relative">
-            <Link
-                href={`/players/${player.playerId}`} 
-                className="w-32 h-32 border-2 rounded-lg border-slate-500 p-2 shadow-lg flex flex-col justify-between">
+        <div className="relative" onClick={() => manageSelection(!selected)}>
+            <div
+                className={clsx("w-32 h-32 cursor-pointer border-2 rounded-lg border-slate-500 p-2 shadow-lg flex flex-col justify-between", {"border-cyan-400 bg-slate-600 text-white": selected})}>
                 <span className="text-lg">
                     {player.derbyName}
                 </span>
@@ -30,7 +37,7 @@ export default function PlayerCard({ player, managementMode }: props) {
                         <span>{playerIcon}</span>
                     </div>
                 </div>
-            </Link>
+            </div>
             {managementMode && (
                 <button
                     onClick={()=> deletePlayer(player.playerId)}

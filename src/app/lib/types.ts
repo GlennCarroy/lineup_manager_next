@@ -6,6 +6,16 @@ export type PlayerType = {
     rotation: number;
 }
 
+export type RosterType = {
+    blockers: PlayerType[];
+    jammers: PlayerType[];
+    lines: {
+        name: string;
+        blockers: number[];
+        jammer: number;
+    }[]
+}
+
 export type InGamePlayerType = PlayerType & {
     penalties: number;
 }

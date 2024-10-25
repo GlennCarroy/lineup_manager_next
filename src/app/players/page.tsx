@@ -47,11 +47,15 @@ export default async function Players({
             <div  className="flex gap-3 flex-wrap">
                 {players.map((player: PlayerType) => {
                     return (
-                        <PlayerCard 
-                            player={player} 
-                            key={player.playerId} 
-                            managementMode={isInManagementMode}    
-                        />
+                        <Link
+                            href={`/players/${player.playerId}`} 
+                        >
+                            <PlayerCard 
+                                player={player} 
+                                key={player.playerId} 
+                                managementMode={isInManagementMode}    
+                            />
+                        </Link>
                     )
                 })}
             </div>
